@@ -70,11 +70,12 @@ textarea {
   width: 98%;
   border-color: black;
   font-size: 17px;
+  border-radius:5px ;
 }
                     
                 </style>
                 
-  
+  <%if(session.getAttribute("kd_session")!=null){%><%} else {  response.sendRedirect("logout");}%> 
 </head>
 <!-- END HEAD -->
 <!-- BEGIN BODY -->
@@ -159,6 +160,8 @@ Generate Reports from Raw Queries</div> <div style=" margin-left: 60px; float:le
                     </div> 
                   
                       <form action="RawQuery" method="post" class="form-horizontal"  >
+                          
+                            <input type='hidden' name='qname' id='qname'>
                        <div  class="portlet-body form" >
                            <select name="queryhistory" id="queryhistory" style='width:80%;' onchange="showqry();">
                                <option value=''>Query History</option>
@@ -308,8 +311,13 @@ function showqry(){
     
     var vl1=$("#queryhistory").val();
     
-   $("#query").html(vl1);
+   $("#query").val(vl1);
+    var qn=$("#queryhistory").find(':selected').attr('data-qname');
+    qn=qn.replace("/"," or ");
+    qn=qn.replaceAll(" ","_");
+    qn=qn.substring(0,60);
     
+      $("#qname").val(qn);
     
 }
 

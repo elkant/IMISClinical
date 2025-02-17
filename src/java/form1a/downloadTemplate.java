@@ -62,9 +62,9 @@ public class downloadTemplate extends HttpServlet {
            HashMap<String, Integer[]> hm= new HashMap< >();
             HashMap<String, String> hmd= new HashMap< >();
 
-            String allpath = getServletContext().getRealPath("/F1av7.xlsx");
-            String allpath_beforeaug = getServletContext().getRealPath("/F1av7_prev.xlsx");
-            String allpath_cxca_v7 = getServletContext().getRealPath("/F1av7_cxca.xlsx");
+            String allpath = getServletContext().getRealPath("/F1av9.xlsx");
+            String allpath_beforeaug = getServletContext().getRealPath("/F1av9_prev.xlsx");
+            String allpath_cxca_v7 = getServletContext().getRealPath("/F1av9_cxca.xlsx");
          
 
         
@@ -92,6 +92,15 @@ public class downloadTemplate extends HttpServlet {
             String facilityarr[] = null;
             String facility = "(";
              String correction_form="";
+             
+            String includedata="";
+             
+             
+             
+            if (request.getParameter("year") != null) 
+            {
+                year = request.getParameter("year");
+            }
             if (request.getParameter("year") != null) 
             {
                 year = request.getParameter("year");
@@ -110,6 +119,11 @@ public class downloadTemplate extends HttpServlet {
             if (request.getParameter("correction_form") != null) 
             {
                 correction_form = request.getParameter("correction_form");
+
+            }
+            if (request.getParameter("includedata") != null) 
+            {
+                includedata = request.getParameter("includedata");
 
             }
 
@@ -245,10 +259,10 @@ if(smonth.equals(emonth)){  mwezi=emonth;  } else { mwezi=smonth+"_to_"+emonth; 
             
            
            
-            String sr_afteraug = getServletContext().getRealPath("/F1av7.xlsx");
-            String sr_beforeaug = getServletContext().getRealPath("/F1av7_prev.xlsx");
-            String sr_linkage = getServletContext().getRealPath("/F1av7_linkage.xlsx");
-            String sr_cxca = getServletContext().getRealPath("/F1av7_cxca.xlsx");
+            String sr_afteraug = getServletContext().getRealPath("/F1av9.xlsx");
+            String sr_beforeaug = getServletContext().getRealPath("/F1av9_prev.xlsx");
+            String sr_linkage = getServletContext().getRealPath("/F1av9_linkage.xlsx");
+            String sr_cxca = getServletContext().getRealPath("/F1av9_cxca.xlsx");
             //check if file exists
  String sr = "";
  String fullmonth="";
@@ -256,8 +270,8 @@ if(smonth.equals(emonth)){  mwezi=emonth;  } else { mwezi=smonth+"_to_"+emonth; 
  if(smonth.length()==1){fullmonth="0"+smonth;}else {fullmonth=smonth;}
  
  //___Decide whether to download a full form 1a or a partial one
- if(correction_form.equals("F1av7_linkage")){sr=sr_linkage;} 
- else if(correction_form.equals("F1v7_cxca")){sr=sr_cxca;} 
+ if(correction_form.equals("F1av9_linkage")){sr=sr_linkage;} 
+ else if(correction_form.equals("F1av9_cxca")){sr=sr_cxca;} 
  else {
             if(new Integer(year+""+fullmonth)<=202207){sr=sr_beforeaug;}else {sr=sr_afteraug;}
  }
@@ -341,8 +355,8 @@ if(smonth.equals(emonth)){  mwezi=emonth;  } else { mwezi=smonth+"_to_"+emonth; 
                     //hide prep ct indicators
                     if(!monthar[a].equals("12") && !monthar[a].equals("3") && !monthar[a].equals("6") && !monthar[a].equals("9"))
                     {
-                    int fstart=137;
-                    int fend=160;
+                    int fstart=150;
+                    int fend=179;
                   
                     
                     for(int ef=fstart;ef<=fend;ef++)
@@ -389,7 +403,8 @@ if(smonth.equals(emonth)){  mwezi=emonth;  } else { mwezi=smonth+"_to_"+emonth; 
                         //per each facility, get available data
         ArrayList requiredrows= new ArrayList();
         
-                                
+        
+             if(includedata.equals("Yes")){                   
         requiredrows= convertResultSetToArrayList(getAnyDataFromDb(conn, "call internal_system.sp_pull_data_F1a_keys('"+mwakamwezi+"','"+mflcode+"');"));
         hmd=convertResultSetToMap(getAnyDataFromDb(conn, "call internal_system.sp_pull_data_F1a('"+mwakamwezi+"');"));
         
@@ -435,9 +450,11 @@ allin.add("total");
                     
                   wb=  populateF1a(wb, requiredrows,allin,  hmd);
               
-                  
+                }
                    wb.setForceFormulaRecalculation(true);
                   XSSFFormulaEvaluator.evaluateAllFormulaCells(wb);
+                  
+                  
                    lockf1a lf1a= new lockf1a();
                   
                  wb= lf1a.lockexcel(shet, wb);

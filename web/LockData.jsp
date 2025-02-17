@@ -71,6 +71,7 @@ legend.formatter {
 
 }
 </style>
+<%if(session.getAttribute("kd_session")!=null){%><%} else {  response.sendRedirect("logout");}%> 
 
 </head>
 <!-- END HEAD -->
@@ -284,7 +285,7 @@ Calendar cal = Calendar.getInstance();
 int year= cal.get(Calendar.YEAR);              
 
 %>
-               <p align="center" style=" font-size: 18px;"> &copyInternal System, Aphia Plus | USAID <%=year%>.</p>
+               <p align="center" style=" font-size: 18px;"> &copyInternal System, USAID Tujenge Jamii | USAID <%=year%>.</p>
            
  
 

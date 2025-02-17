@@ -61,7 +61,7 @@
 }
                     
                 </style>
-                
+                  <%if(session.getAttribute("kd_session")!=null){%><%} else {  response.sendRedirect("logout");}%> 
   
 </head>
 <!-- END HEAD -->
@@ -188,6 +188,7 @@
                                       <option value='updateEMRResults'>1. AutoUpdate EMR Results</option>
                                       <option value='updatePMTCT'>2. AutoUpdate PMTCT Results</option>                                      
                                       <option value='updateNonEMRResults'>3. Autoupdate VLMIS VL Results</option>
+                                      <option value='updateMissingWeights'>4. Pick latest Valid Weight</option>
                                       
                                      
                                              

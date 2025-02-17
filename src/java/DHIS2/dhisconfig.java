@@ -31,6 +31,12 @@ String  dhis2_API_URL_OrgunitGroup=null;
 String  dhis2_API_URL_F1a=null;  
 String  dhis2_API_URL_DailyART=null;  
 String  dhis2_API_URL_UploadF1a=null;  
+String  gmail_pass=null;  
+
+
+
+String utj_email=null;
+String utj_pass=null;
 
   public dhisconfig()
   {
@@ -38,13 +44,25 @@ String  dhis2_API_URL_UploadF1a=null;
   dhis2_Name ="USAID Tujenge Jamii";
   //dhis2_Home_URL ="https://dhis-afyanyota.fhi360.org/";
   //dhis2_Home_URL ="https://hiskenya.org/";
-  dhis2_Home_URL ="https://partnermanagementsystem.uonbi.ac.ke/";
+ dhis2_Home_URL ="https://partnermanagementsystem.uonbi.ac.ke/";
   
-  dhis2_username="tujengejamii";
-  dhis2_Password="Usaidtujengejamii21!";
+
+  dhis2_username="";
+  dhis2_Password="!";
+  //dhis2_username="";
+
+  dhis2_username="ekaunda";
+  dhis2_Password="123456@Ab";
+  gmail_pass="jndhardsfmnmgfmx";
+  
+  
+   utj_pass="cxjkkhzlwcksftrr";
+  utj_email="utjdata@usaidtujengejamii.org";
+  
   //dhis2_username="emmanuelkaunda";
+
   
-  //dhis2_Password="P@ssw0rd";
+ // dhis2_Password="P@ssw0rd";
   dhis2_API_URL="api/";
   
   dhis2_API_URL_orgUnits="organisationUnits.json?fields=id,name,level,parent,path,shortName&paging=false&links=false";  
@@ -58,6 +76,25 @@ String  dhis2_API_URL_UploadF1a=null;
   dhis2_API_URL_UploadF1a="dataValueSets";
   
   }  
+  
+  
+  
+  
+    public String getUtj_email() {
+        return utj_email;
+    }
+
+    public void setUtj_email(String utj_email) {
+        this.utj_email = utj_email;
+    }
+
+    public String getUtj_pass() {
+        return utj_pass;
+    }
+
+    public void setUtj_pass(String utj_pass) {
+        this.utj_pass = utj_pass;
+    }
   
 public String getDhis2_username() {
         return dhis2_username;
@@ -73,6 +110,14 @@ public String getDhis2_username() {
 
     public void setDhis2_Password(String dhis2_Password) {
         this.dhis2_Password = dhis2_Password;
+    }
+
+    public String getGmail_pass() {
+        return gmail_pass;
+    }
+
+    public void setGmail_pass(String gmail_pass) {
+        this.gmail_pass = gmail_pass;
     }
   
 }

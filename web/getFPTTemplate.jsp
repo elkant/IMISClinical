@@ -71,6 +71,7 @@ legend.formatter {
 
 }
 </style>
+<%if(session.getAttribute("kd_session")!=null){%><%} else {  response.sendRedirect("logout");}%> 
 
 </head>
 <!-- END HEAD -->
@@ -196,7 +197,7 @@ legend.formatter {
                                                 int curyear=cal.get(Calendar.YEAR);
                                                  int curmn=cal.get(Calendar.MONTH)+1;
                                                 String selected="";
-                                                if(curmn>=10){curyear=curyear+1;}
+                                                if(curmn>=11){curyear=curyear+1;}
                                                 
                                             for(int a=curyear-1;a<=curyear;a++)
                                             {

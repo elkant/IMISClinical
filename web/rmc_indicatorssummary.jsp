@@ -1,5 +1,6 @@
 
-<%@page import="RAMCAH.dataPulls"%>
+<%@page import="scripts.dataPulls"%>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -90,6 +91,7 @@ input[readonly]{
 </style>
  
  
+<%if(session.getAttribute("kd_session")!=null){%><%} else {  response.sendRedirect("logout");}%> 
  
 </head>
 <body class="">
@@ -197,6 +199,8 @@ input[readonly]{
 <div class='form-group col-md-4'>
 <label for='donor_name'><b>Organisation Type<font color='red'>*</font></b></label>
 <select required="true" type='select' onchange="getFacilitiesJson();isdisplayindicators();" class='form-control' id='dataset' name='dataset'  ></select>
+<input type="hidden" value="indicators_summary" name="formgroup" id="formgroup">
+
 </div>
 
 <div class='form-group col-md-4'>
@@ -517,6 +521,7 @@ function refreshPage(){
     
 }
   
+  loadSelectOptionsFromDb('dataset','getDataSets');
 
 
 </script>    

@@ -31,6 +31,7 @@
        if(ot==="facility"){act="getNakuruSites"; $("#ou").html("<font color='red'>*</font> <b>Facility Name</b>");}
        else if(ot==="ward"){act="getNakuruWards"; $("#ou").html("<font color='red'>*</font> <b>Ward Name</b>");}
        else if(ot==="subcounty"){act="getNakuruDistricts"; $("#ou").html("<font color='red'>*</font> <b>Sub-County Name</b>");}
+       else if(ot==="cu"){act="getNakuruCus"; $("#ou").html("<font color='red'>*</font> <b>Community Unit Name</b>");}
       if(ot!==''){
        loadSelectOptionsFromDb('facility',act);
               $('#facility').select2(); 
@@ -73,7 +74,7 @@ $("#"+elementtoappend).html(""+dt);
     
 }
     
-loadSelectOptionsFromDb('dataset','getDataSets');
+
    
    
    
@@ -114,10 +115,7 @@ loadSelectOptionsFromDb('dataset','getDataSets');
 getPeriod();
 
 
-
-
-
-
+                
 
 
 
@@ -326,6 +324,7 @@ function refreshujumbe(eid){
                                       
                                        var fc = $("#facility").val().trim();
                                        var ds = $("#dataset").val().trim();
+                                       var fg = $("#formgroup").val().trim();
 //    console.log("_"+fc+"vs"+dt);
                                        if ( ds !== '' &&ym !== '' && fc !== 'Select facility' && fc !== '')
                                        {
@@ -335,16 +334,16 @@ function refreshujumbe(eid){
 
                                            //now load the data
                                            $.ajax({
-                                               url: 'getIndicators?ym=' + ym + "&fc=" + fc+ "&ds=" + ds,
+                                               url: 'getIndicators?ym=' + ym + "&fc=" + fc+ "&ds=" + ds+ "&fg=" + fg,
                                                type: 'post',
                                                dataType: 'html',
                                                success: function (data)
                                                {
 
                                                    $("#form1a_accordion").html(data);
-console.log(data);
+                                               console.log(data);
 
-                                               }});
+                                                }});
 
 
 
